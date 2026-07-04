@@ -1,73 +1,94 @@
-import React from 'react';
-import Layout from '../components/Layout';
-import { mockAttendance, subjects } from '../data/mockData';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 
 const Attendance = () => {
-  // Combine attendance with subject info
-  const attendanceData = mockAttendance.map(att => {
-    const subject = subjects.find(s => s.subjectId === att.subjectId);
-    const percentage = Math.round((att.present / att.total) * 100);
-    return {
-      ...att,
-      ...subject,
-      percentage
-    };
-  });
+  const [activeTab, setActiveTab] = useState('Previous');
 
-  const overallPercentage = Math.round(
-    (mockAttendance.reduce((acc, curr) => acc + curr.present, 0) / 
-    mockAttendance.reduce((acc, curr) => acc + curr.total, 0)) * 100
-  );
+  // Dummy data matching the screenshot
+  const previousData = [
+    { sem: 4, ay: 'A.Y. 2025-26 - Even', percentage: 82.22 },
+    { sem: 3, ay: 'A.Y. 2025-26 - Odd', percentage: 76.22 },
+    { sem: 3, ay: 'A.Y. 2025-26 - Odd', percentage: 76.22 },
+  ];
 
   return (
-    <Layout title="Attendance Dashboard">
-      {/* Overall Attendance Card */}
-      <div className="bg-white rounded-2xl p-6 shadow-soft mb-6 text-center">
-        <h2 className="text-gray-500 text-sm font-semibold mb-2">Overall Attendance</h2>
-        <div className={`text-4xl font-bold ${overallPercentage >= 75 ? 'text-green-500' : 'text-red-500'}`}>
-          {overallPercentage}%
-        </div>
+    <div className="min-h-screen bg-[#F2F2F2] font-sans pb-10">
+      {/* Header */}
+      <header className="bg-black text-white h-14 flex items-center px-4 sticky top-0 z-10">
+        <Link to="/" className="p-2 -ml-2 cursor-pointer">
+          <ArrowLeft className="w-6 h-6" />
+        </Link>
+        <h1 className="flex-1 text-center text-[17px] font-semibold pr-8">Attendance</h1>
+      </header>
+
+      {/* Tabs */}
+      <div className="flex border-b border-gray-300 pt-4 px-6 gap-6 bg-[#F2F2F2]">
+        <button 
+          onClick={() => setActiveTab('Current')}
+          className={`pb-2 text-[15px] transition-colors ${
+            activeTab === 'Current' 
+              ? 'text-[#2e2e48] font-bold border-b-2 border-[#2e2e48]' 
+              : 'text-gray-400 font-medium'
+          }`}
+        >
+          Current
+        </button>
+        <button 
+          onClick={() => setActiveTab('Previous')}
+          className={`pb-2 text-[15px] transition-colors ${
+            activeTab === 'Previous' 
+              ? 'text-[#2e2e48] font-bold border-b-2 border-[#2e2e48]' 
+              : 'text-gray-400 font-medium'
+          }`}
+        >
+          Previous
+        </button>
       </div>
 
-      <div className="space-y-4 pb-8">
-        {attendanceData.map((data, idx) => {
-          const isLow = data.percentage < 75;
-          return (
-            <div key={idx} className="bg-white rounded-2xl p-5 shadow-soft hover:shadow-md transition-shadow">
-              <div className="flex justify-between items-start mb-2">
-                <div>
-                  <h3 className="font-bold text-gray-800">{data.name}</h3>
-                  <p className="text-sm text-gray-500">{data.faculty}</p>
-                </div>
-                <div className={`text-xl font-bold ${isLow ? 'text-red-500' : 'text-green-500'}`}>
-                  {data.percentage}%
-                </div>
-              </div>
-
-              <div className="flex justify-between text-xs text-gray-500 mb-3">
-                <span>Total: {data.total}</span>
-                <span>Present: {data.present}</span>
-                <span>Absent: {data.total - data.present}</span>
-              </div>
-
-              {/* Progress Bar */}
-              <div className="w-full bg-gray-200 rounded-full h-2.5 mb-2">
-                <div 
-                  className={`h-2.5 rounded-full ${isLow ? 'bg-red-500' : 'bg-green-500'}`} 
-                  style={{ width: `${data.percentage}%` }}
-                ></div>
-              </div>
-
-              {isLow && (
-                <p className="text-xs text-red-500 mt-2 font-medium">
-                  ⚠️ Your attendance is low in this subject.
-                </p>
-              )}
+      {/* Content List */}
+      <div className="p-4 space-y-3 mt-2">
+        {activeTab === 'Previous' && previousData.map((data, idx) => (
+          <div key={idx} className="bg-white rounded-[14px] p-3 flex gap-3 shadow-[0_1px_8px_rgba(0,0,0,0.05)] items-center">
+            
+            {/* Left Semester Block */}
+            <div className="bg-[#E2E2E2] rounded-[10px] w-14 h-14 flex flex-col items-center justify-center flex-shrink-0 text-[13px] font-semibold text-black leading-tight">
+              <span>Sem</span>
+              <span>{data.sem}</span>
             </div>
-          )
-        })}
+            
+            {/* Right Details */}
+            <div className="flex-1 pr-1">
+              <div className="flex justify-between items-center mb-1.5">
+                <span className="text-[#329683] text-[13px] font-semibold tracking-tight">{data.ay}</span>
+                <span className="text-gray-700 text-[13px]">Attendance</span>
+              </div>
+              
+              <div className="flex justify-between items-center gap-3">
+                {/* Progress Bar Track */}
+                <div className="flex-1 bg-gray-200 h-[3px] rounded-full overflow-hidden">
+                   {/* Progress Bar Fill */}
+                   <div 
+                     className="bg-[#59A859] h-full rounded-full" 
+                     style={{ width: `${data.percentage}%` }}
+                   ></div>
+                </div>
+                {/* Percentage Text */}
+                <span className="text-[#59A859] text-[13px] font-bold w-12 text-right">
+                  {data.percentage}%
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {activeTab === 'Current' && (
+          <div className="text-center text-gray-400 mt-10">
+            No current attendance data available.
+          </div>
+        )}
       </div>
-    </Layout>
+    </div>
   );
 };
 
