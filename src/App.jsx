@@ -6,6 +6,7 @@ import Attendance from './pages/Attendance';
 import AdminAttendance from './pages/AdminAttendance';
 import Profile from './pages/Profile';
 import Announcements from './pages/Announcements';
+import Results from './pages/Results';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         {/* Student Routes */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/attendance" element={<Attendance />} />
+        <Route path="/results" element={<Results />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/announcements" element={<Announcements />} />
         
