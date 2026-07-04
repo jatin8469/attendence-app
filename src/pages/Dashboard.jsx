@@ -19,11 +19,13 @@ import {
   Ticket
 } from 'lucide-react';
 
+import { AcademicCalendarIcon, TimeTableIcon, AttendanceIcon } from '../components/CustomIcons';
+
 const Dashboard = () => {
   const cards = [
-    { title: 'Academic Calendar', icon: CalendarDays, colorClass: 'text-cyan-500', linkTo: '/calendar' },
-    { title: 'Time Table', icon: Clock, colorClass: 'text-blue-500', linkTo: '/timetable' },
-    { title: 'Attendance', icon: ClipboardCheck, colorClass: 'text-indigo-500', linkTo: '/attendance' },
+    { title: 'Academic Calendar', icon: AcademicCalendarIcon, colorClass: 'text-cyan-500', linkTo: '/calendar' },
+    { title: 'Time Table', icon: TimeTableIcon, colorClass: 'text-blue-500', linkTo: '/timetable' },
+    { title: 'Attendance', icon: AttendanceIcon, colorClass: 'text-indigo-500', linkTo: '/attendance' },
     { title: 'LMS Dashboard', icon: BookOpen, colorClass: 'text-red-400', linkTo: '/lms' },
     { title: 'Announcement', icon: Megaphone, colorClass: 'text-blue-600', linkTo: '/announcements' },
     { title: 'Transport', icon: Bus, colorClass: 'text-yellow-500', linkTo: '/transport' },
