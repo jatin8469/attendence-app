@@ -71,7 +71,7 @@ const Results = () => {
                 <div className="absolute top-0 right-0 bottom-0 w-1/2 bg-gradient-to-l from-red-100 to-transparent opacity-50"></div>
                 
                 <div className="relative z-10">
-                  <div className="text-xl font-bold text-gray-900 leading-tight">2</div>
+                  <div className="text-xl font-bold text-gray-900 leading-tight">0</div>
                   <div className="text-xs text-gray-500 font-medium mt-0.5">Total Backlog</div>
                 </div>
                 <div className="bg-red-400 p-1 rounded-full relative z-10 flex items-center justify-center w-6 h-6">
