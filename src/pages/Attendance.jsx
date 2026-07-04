@@ -16,7 +16,7 @@ const Attendance = () => {
     <div className="min-h-screen bg-[#F2F2F2] font-sans pb-10">
       {/* Header */}
       <header className="bg-black text-white h-14 flex items-center px-4 sticky top-0 z-10">
-        <Link to="/" className="p-2 -ml-2 cursor-pointer">
+        <Link to="/dashboard" className="p-2 -ml-2 cursor-pointer">
           <ArrowLeft className="w-6 h-6" />
         </Link>
         <h1 className="flex-1 text-center text-[17px] font-semibold pr-8">Attendance</h1>
