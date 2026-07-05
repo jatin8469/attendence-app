@@ -6,8 +6,8 @@ const Results = () => {
   const [activeTab, setActiveTab] = useState('Transcript');
 
   const semesters = [
-    { sem: 4, spi: 6.33, bl: 0 },
-    { sem: 3, spi: 5.5, bl: 0 },
+    { sem: 4, spi: 8.47, bl: 0 },
+    { sem: 3, spi: 6.33, bl: 0 },
     { sem: 2, spi: 7.7, bl: 0 },
     { sem: 1, spi: 7.76, bl: 0 },
   ];
