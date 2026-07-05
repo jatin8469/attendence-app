@@ -15,7 +15,7 @@ const Attendance = () => {
   const currentData = {
     sem: 5,
     ay: 'A.Y. 2026-27 - Odd',
-    percentage: 91.30,
+    percentage: 95,
     present: 63,
     absent: 6,
     pending: 0,
