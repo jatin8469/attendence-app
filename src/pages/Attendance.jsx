@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ChevronDown } from 'lucide-react';
 
 const Attendance = () => {
   const [activeTab, setActiveTab] = useState('Previous');
@@ -11,6 +11,17 @@ const Attendance = () => {
     { sem: 3, ay: 'A.Y. 2025-26 - Odd', percentage: 76.22 },
     { sem: 3, ay: 'A.Y. 2025-26 - Odd', percentage: 76.22 },
   ];
+
+  const currentData = {
+    sem: 5,
+    ay: 'A.Y. 2026-27 - Odd',
+    percentage: 91.30,
+    present: 63,
+    absent: 6,
+    pending: 0,
+    noAttendance: 0,
+    total: 69
+  };
 
   return (
     <div className="min-h-screen bg-[#F2F2F2] font-sans pb-10">
@@ -83,8 +94,60 @@ const Attendance = () => {
         ))}
 
         {activeTab === 'Current' && (
-          <div className="text-center text-gray-400 mt-10">
-            No current attendance data available.
+          <div className="flex flex-col gap-2">
+            {/* Main Current Attendance Card */}
+            <div className="bg-white rounded-[14px] p-3 flex gap-3 shadow-[0_1px_8px_rgba(0,0,0,0.05)] items-center">
+              {/* Left Semester Block */}
+              <div className="bg-[#E2E2E2] rounded-[10px] w-14 h-14 flex flex-col items-center justify-center flex-shrink-0 text-[13px] font-semibold text-black leading-tight">
+                <span>Sem</span>
+                <span>{currentData.sem}</span>
+              </div>
+              
+              {/* Right Details */}
+              <div className="flex-1 pr-1">
+                <div className="flex justify-between items-center mb-1.5">
+                  <span className="text-[#329683] text-[13px] font-semibold tracking-tight">{currentData.ay}</span>
+                  <ChevronDown className="w-5 h-5 text-black" strokeWidth={2.5} />
+                </div>
+                
+                <div className="flex justify-between items-center gap-3">
+                  {/* Progress Bar Track */}
+                  <div className="flex-1 bg-gray-200 h-[3px] rounded-full overflow-hidden">
+                     {/* Progress Bar Fill */}
+                     <div 
+                       className="bg-[#59A859] h-full rounded-full" 
+                       style={{ width: `${currentData.percentage}%` }}
+                     ></div>
+                  </div>
+                  {/* Percentage Text */}
+                  <span className="text-[#59A859] text-[13px] font-bold w-12 text-right">
+                    {currentData.percentage}%
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Stats Breakdown Card */}
+            <div className="bg-white rounded-[14px] p-4 shadow-[0_1px_8px_rgba(0,0,0,0.05)]">
+              <div className="grid grid-cols-2 gap-y-3 gap-x-4">
+                <div className="flex justify-between items-center text-[15px]">
+                  <span className="text-[#4CAF50] font-medium">Present :</span>
+                  <span className="text-[#4CAF50] font-semibold">{currentData.present} / {currentData.total}</span>
+                </div>
+                <div className="flex justify-between items-center text-[15px]">
+                  <span className="text-[#EF4444] font-medium">Absent :</span>
+                  <span className="text-[#EF4444] font-semibold">{currentData.absent} / {currentData.total}</span>
+                </div>
+                <div className="flex justify-between items-center text-[15px]">
+                  <span className="text-[#F59E0B] font-medium">Pending :</span>
+                  <span className="text-[#F59E0B] font-semibold">{currentData.pending} / {currentData.total}</span>
+                </div>
+                <div className="flex justify-between items-center text-[15px]">
+                  <span className="text-[#3B82F6] font-medium">No Attendance :</span>
+                  <span className="text-[#3B82F6] font-semibold">{currentData.noAttendance} / {currentData.total}</span>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
