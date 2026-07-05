@@ -6,7 +6,7 @@ const Results = () => {
   const [activeTab, setActiveTab] = useState('Transcript');
 
   const semesters = [
-    { sem: 4, spi: 8.47, bl: 0 },
+    { sem: 4, spi: 7.89, bl: 0 },
     { sem: 3, spi: 6.33, bl: 0 },
     { sem: 2, spi: 7.7, bl: 0 },
     { sem: 1, spi: 7.76, bl: 0 },
@@ -57,7 +57,7 @@ const Results = () => {
                 <div className="absolute top-0 right-0 bottom-0 w-1/2 bg-gradient-to-l from-green-100 to-transparent opacity-50"></div>
                 
                 <div className="relative z-10">
-                  <div className="text-xl font-bold text-gray-900 leading-tight">7.56</div>
+                  <div className="text-xl font-bold text-gray-900 leading-tight">7.4</div>
                   <div className="text-xs text-gray-500 font-medium mt-0.5">CPI</div>
                 </div>
                 <div className="bg-green-100/80 p-2 rounded-full relative z-10">
