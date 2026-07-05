@@ -57,7 +57,7 @@ const Results = () => {
                 <div className="absolute top-0 right-0 bottom-0 w-1/2 bg-gradient-to-l from-green-100 to-transparent opacity-50"></div>
                 
                 <div className="relative z-10">
-                  <div className="text-xl font-bold text-gray-900 leading-tight">6.76</div>
+                  <div className="text-xl font-bold text-gray-900 leading-tight">7.56</div>
                   <div className="text-xs text-gray-500 font-medium mt-0.5">CPI</div>
                 </div>
                 <div className="bg-green-100/80 p-2 rounded-full relative z-10">
